@@ -32,7 +32,7 @@ GLfloat eye_updown = 0;
 
 //world
 int weather = 0;
-int daytime = 0; 
+int daytime = 0;
 int day;
 
 
@@ -87,8 +87,8 @@ void drawTruncatedCone(int baseRadius1, int baseRadius2, int topRadius1, int top
 	// material
 
 	GLfloat diffuseMaterial[] = { 0.8, 0.8, 0.8, 1.0 };
-	GLfloat specularMaterial[] = { 0.2, 0.2, 0.2, 1.0 }; 
-	GLfloat shininess = 16.0; 
+	GLfloat specularMaterial[] = { 0.2, 0.2, 0.2, 1.0 };
+	GLfloat shininess = 16.0;
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMaterial);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specularMaterial);
 	glMaterialf(GL_FRONT, GL_SHININESS, shininess);
@@ -172,17 +172,17 @@ GLuint texture[9]; void when_in_mainloop() { // idle callback function
 
 void textureinit() {
 	const char* pictures[9] = {  // Define a char pointer for the file name to be used 
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/grass.bmp",
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/sea.bmp",
+	"texture/grass.bmp",
+	"texture/sea.bmp",
 	//sky
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/rainsky2.bmp",
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/sunnysky.bmp",
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/blue.bmp",
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/starrysky.bmp",
+	"texture/rainsky2.bmp",
+	"texture/sunnysky.bmp",
+	"texture/blue.bmp",
+	"texture/starrysky.bmp",
 	//buildings
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/tile.bmp",
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/wall.bmp",
-	"D:/Files/XJTLU/Y3/CPT205-2324-S1-Computer Graphics/Assignment2/texture/flower.bmp"
+	"texture/tile.bmp",
+	"texture/wall.bmp",
+	"texture/flower.bmp"
 	};
 	for (int i = 0; i < 9; i++) {
 		ReadImage(pictures[i], loadTexture[i].imageWidth, loadTexture[i].imageHeight, loadTexture[i].pixelLength);
@@ -198,7 +198,7 @@ void textureinit() {
 	}
 }
 
-void drawcylinder_tx(int baseradius, int topradius, int height,int slice, int textureindex) {
+void drawcylinder_tx(int baseradius, int topradius, int height, int slice, int textureindex) {
 	glBindTexture(GL_TEXTURE_2D, texture[textureindex]);
 	GLUquadricObj* cyliner = gluNewQuadric();
 	gluQuadricDrawStyle(cyliner, GLU_FILL);
@@ -208,10 +208,10 @@ void drawcylinder_tx(int baseradius, int topradius, int height,int slice, int te
 	gluDeleteQuadric(cyliner);
 }
 
-void drawsquare_tx(int textureindex,int zoom) {
-	glBindTexture(GL_TEXTURE_2D, texture[textureindex]); 
+void drawsquare_tx(int textureindex, int zoom) {
+	glBindTexture(GL_TEXTURE_2D, texture[textureindex]);
 	glBegin(GL_QUADS);
-	glTexCoord2f(1.0, 0.0); glVertex3f(-2.0* zoom, 0.0, -1.0 * zoom);
+	glTexCoord2f(1.0, 0.0); glVertex3f(-2.0 * zoom, 0.0, -1.0 * zoom);
 	glTexCoord2f(0.0, 0.0); glVertex3f(-2.0 * zoom, 0.0, 1.0 * zoom);
 	glTexCoord2f(0.0, 1.0); glVertex3f(0.0, 0.0, 1.0 * zoom);
 	glTexCoord2f(1.0, 1.0); glVertex3f(0.0, 0.0, -1.0 * zoom);
@@ -239,14 +239,14 @@ void drawball_tx(int textureindex, int radius) {
 
 //----------------------------------------texture usage----------------------------------
 float backgroundrotate = 0;
-void skyball(int textureindex, int radius){
+void skyball(int textureindex, int radius) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glPushMatrix();
 	glScalef(100, 100, 100);
 	glRotatef(90, 1, 0, 0);
 	glRotatef(backgroundrotate, 0, 0, 1);
-	drawball_tx(textureindex,radius);
+	drawball_tx(textureindex, radius);
 	glPopMatrix();
 	glDisable(GL_BLEND);
 }
@@ -256,7 +256,7 @@ void testball() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glPushMatrix();
-	glColor4f(51.0f/255.0f, 204.0f / 255.0f, 255.0f / 255.0f, 0.5); // ÉèÖÃÑÕÉ«µÄ alpha ·ÖÁ¿£¬¿ØÖÆÍ¸Ã÷¶È
+	glColor4f(51.0f / 255.0f, 204.0f / 255.0f, 255.0f / 255.0f, 0.5); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ alpha ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½
 	glTranslatef(0.0, -320, 0.0);
 	glScalef(300, 30, 300);
 	glutSolidCube(20);
@@ -271,9 +271,9 @@ float skytransparency = 0;
 //1 rainy
 void skychange() {
 	if (weather == 0) {
-		glColor4f(1, 1, 1, 0.5-skytransparency);
+		glColor4f(1, 1, 1, 0.5 - skytransparency);
 		skyball(5, 70);
-		glColor4f(1, 1, 1, 0.5+skytransparency);
+		glColor4f(1, 1, 1, 0.5 + skytransparency);
 		skyball(3, 60);
 	}
 	if (weather == 1) {
@@ -282,7 +282,7 @@ void skychange() {
 		glColor4f(1, 1, 1, 0.5 + skytransparency);
 		skyball(2, 60);
 	}
-	
+
 }
 
 
@@ -290,17 +290,17 @@ int wave = 0;
 void sea() {
 	glColor4f(1, 1, 1, 0.5);
 	for (int i = 0; i < 6; i++) {
-			glPushMatrix();
-			glTranslatef(-2000 + i * 1600, -10.0, -800+wave);
-			glScalef(800, 10, 800);
-			drawsquare_tx(1,1);
-			glPopMatrix();
+		glPushMatrix();
+		glTranslatef(-2000 + i * 1600, -10.0, -800 + wave);
+		glScalef(800, 10, 800);
+		drawsquare_tx(1, 1);
+		glPopMatrix();
 	}
 	for (int i = 0; i < 6; i++) {
 		glPushMatrix();
 		glTranslatef(-2000 + i * 1600, -10.0, 800 + wave);
 		glScalef(800, 10, 800);
-		drawsquare_tx(1,1);
+		drawsquare_tx(1, 1);
 		glPopMatrix();
 	}
 
@@ -308,28 +308,28 @@ void sea() {
 		glPushMatrix();
 		glTranslatef(-2000 + i * 1600, -10.0, 2400 + wave);
 		glScalef(800, 10, 800);
-		drawsquare_tx(1,1);
+		drawsquare_tx(1, 1);
 		glPopMatrix();
 	}
 	for (int i = 0; i < 6; i++) {
 		glPushMatrix();
 		glTranslatef(-2000 + i * 1600, -10.0, -2400 + wave);
 		glScalef(800, 10, 800);
-		drawsquare_tx(1,1);
+		drawsquare_tx(1, 1);
 		glPopMatrix();
 	}
 	for (int i = 0; i < 6; i++) {
 		glPushMatrix();
 		glTranslatef(-2000 + i * 1600, -10.0, 4000 + wave);
 		glScalef(800, 10, 800);
-		drawsquare_tx(1,1);
+		drawsquare_tx(1, 1);
 		glPopMatrix();
 	}
 	for (int i = 0; i < 6; i++) {
 		glPushMatrix();
 		glTranslatef(-2000 + i * 1600, -10.0, 5600 + wave);
 		glScalef(800, 10, 800);
-		drawsquare_tx(1,1);
+		drawsquare_tx(1, 1);
 		glPopMatrix();
 	}
 
@@ -340,12 +340,12 @@ float growth = 0;
 void flower() {
 	glColor4f(1, 1, 1, 0.5);
 	for (int i = 0; i < 4; i++) {
-	glPushMatrix();
-	glTranslatef(550-i*180, 80, 2500);
-	glRotatef(90, 1, 0, 0);
-	glScalef(10+growth, 10 + growth, 10 + growth);
-	drawsquare_tx(4, 2);
-	glPopMatrix();
+		glPushMatrix();
+		glTranslatef(550 - i * 180, 80, 2500);
+		glRotatef(90, 1, 0, 0);
+		glScalef(10 + growth, 10 + growth, 10 + growth);
+		drawsquare_tx(4, 2);
+		glPopMatrix();
 	}
 
 	for (int i = 0; i < 4; i++) {
@@ -365,7 +365,7 @@ void flower() {
 		drawsquare_tx(4, 2);
 		glPopMatrix();
 	}
-	
+
 	for (int i = 0; i < 4; i++) {
 		glPushMatrix();
 		glTranslatef(550 - i * 180, 80, 1600);
@@ -382,14 +382,14 @@ void grassland() {
 	glColor3f(1, 1, 1);
 	glTranslatef(500, 30.0, 2000);
 	glRotatef(-90, 1, 0, 0);
-	drawcylinder_tx(1350, 0, 1,36, 0);
+	drawcylinder_tx(1350, 0, 1, 36, 0);
 	glPopMatrix();
 	//grassland2
 	glPushMatrix();
 	glColor3f(1, 1, 1);
 	glTranslatef(-1000, 55.0, 2000);
 	glRotatef(-90, 1, 0, 0);
-	drawcylinder_tx(750,0,5, 36, 0);
+	drawcylinder_tx(750, 0, 5, 36, 0);
 	glPopMatrix();
 }
 
@@ -401,14 +401,14 @@ void windmill() {
 	glColor3f(1, 1, 1);
 	glTranslatef(-1000, 400.0, 1700);
 	glRotatef(-90, 1, 0, 0);
-	drawcylinder_tx(200, 0, 100, 6,6);
+	drawcylinder_tx(200, 0, 100, 6, 6);
 	glPopMatrix();
 
 	glPushMatrix();
 	glColor3f(1, 1, 1);
 	glTranslatef(-1000, 0.0, 1700);
 	glRotatef(-90, 1, 0, 0);
-	drawcylinder_tx(200, 120, 400,4, 7);
+	drawcylinder_tx(200, 120, 400, 4, 7);
 	glPopMatrix();
 }
 
@@ -447,7 +447,7 @@ void pond() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glPushMatrix();
 	glTranslatef(650, 40.0, 2000);
-	glColor4f(77/255.0, 166 / 255.0, 255 / 255.0, 0.8);
+	glColor4f(77 / 255.0, 166 / 255.0, 255 / 255.0, 0.8);
 	drawTruncatedCone(550, 1000, 550, 1000, 5, 20);
 	glPopMatrix();
 	glDisable(GL_BLEND);
@@ -458,7 +458,7 @@ void farmland() {
 	glPushMatrix();
 	glTranslatef(-250, 40.0, 2200);
 	glScalef(800 / 10.0, 10 / 10.0, 1500 / 10.0);
-	glColorRGB(77,51, 25);
+	glColorRGB(77, 51, 25);
 	glutSolidCube(10);
 	glPopMatrix();
 	//animal
@@ -470,14 +470,14 @@ void farmland() {
 	glPopMatrix();
 }
 
-	GLfloat emmission[] = { 0.4, 0.3, 0.1 };
-	GLfloat no_emmission[] = { 0.0, 0.0, 0.0 };
+GLfloat emmission[] = { 0.4, 0.3, 0.1 };
+GLfloat no_emmission[] = { 0.0, 0.0, 0.0 };
 void lighthouse() {
 	//ground
 	glPushMatrix();
 	glScalef(1.5, 1.5, 1.5);
 	glPushMatrix();
-	glTranslatef(-800, 40.0+100, 1300);
+	glTranslatef(-800, 40.0 + 100, 1300);
 	glColorRGB(255, 255, 204);
 	drawTruncatedCone(100, 100, 70, 70, 800, 20);
 	glPopMatrix();
@@ -538,7 +538,7 @@ void fence()
 
 			glPushMatrix();
 			//each fance
-			glRotatef((360 /100)*i, 0, 1, 0);
+			glRotatef((360 / 100) * i, 0, 1, 0);
 			glTranslatef(0.0, 50.0, 0.0);
 			glScalef(80.0 / 5, 5.0 / 5, 10.0 / 5);
 			glColor3f(0.7, 0.3, 0.0);
@@ -618,22 +618,22 @@ struct Rain {
 Rain particles[numParticles];
 
 
-void initRaindrop() {  
-	
+void initRaindrop() {
+
 	for (int i = 0; i < numParticles; i++) {
 		particles[i].x = rand() % 10001 - 5000;
 		particles[i].y = rand() % 5000;
 		particles[i].z = rand() % 10001 - 5000;
-		particles[i].vy = rand() % 100+1;
+		particles[i].vy = rand() % 100 + 1;
 	}
 }
 
 void drawRain() {
-	glColor3f(1.0, 1.0, 1.0); 
+	glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_LINES);
 	for (int i = 0; i < numParticles; i++) {
 		glVertex3f(particles[i].x, particles[i].y, particles[i].z);
-		glVertex3f(particles[i].x + 5, particles[i].y - 90, particles[i].z);  // ÏÂ½µ5¸öÏñËØ£¬Ä£ÄâÓêµÎÏÂÂä
+		glVertex3f(particles[i].x + 5, particles[i].y - 90, particles[i].z);  // ï¿½Â½ï¿½5ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 	glEnd();
 
@@ -698,7 +698,8 @@ void sun_moon() {
 	if (suny > 0) {
 		glEnable(GL_LIGHT0);
 		sunlight(sunx, suny, sun_moonz);
-	}else{
+	}
+	else {
 		glDisable(GL_LIGHT0);
 	}
 	if (moony > 0) {
@@ -720,7 +721,8 @@ void sun_moon() {
 		{
 			glDisable(GL_FOG);
 		}
-	}else {
+	}
+	else {
 		glDisable(GL_LIGHT1);
 		glDisable(GL_FOG);
 	}
@@ -791,7 +793,7 @@ void drawLeg(bool flip)
 void drawHead(void)
 {
 	//head
-	glPushMatrix(); 
+	glPushMatrix();
 	glTranslatef(0, -1, 0);
 	glScalef(1, 1, 1);
 	glColorRGB(255, 255, 204);
@@ -847,7 +849,7 @@ void generateduck() {
 	for (int i = 0; i < numDucks; i++) {
 		glPushMatrix();
 		glTranslatef(duckparticles[i].x, 70, duckparticles[i].z + 1000);
-		if (duckparticles[i].dir==1) {
+		if (duckparticles[i].dir == 1) {
 			glRotatef(180, 0, 1, 0);
 		}
 		drawduck();
@@ -875,12 +877,12 @@ void update(int value) {
 
 	//rain
 	for (int i = 0; i < numParticles; i++) {
-		particles[i].y -= particles[i].vy;  
+		particles[i].y -= particles[i].vy;
 		if (particles[i].y < 0) {
 			particles[i].x = rand() % 10001 - 5000;
 			particles[i].y = rand() % 5000;
 			particles[i].z = rand() % 10001 - 5000;
-			particles[i].vy =rand() % 100+1;
+			particles[i].vy = rand() % 100 + 1;
 		}
 	}
 
@@ -891,7 +893,7 @@ void update(int value) {
 		leg_rotation = 0;
 	}
 	for (int i = 0; i < numDucks; i++) {
-		duckparticles[i].x -= duckparticles[i].dir *1;
+		duckparticles[i].x -= duckparticles[i].dir * 1;
 		if (duckparticles[i].x <= -1500 || duckparticles[i].x >= 1500) {
 			duckparticles[i].x *= -1;
 		}
@@ -902,14 +904,14 @@ void update(int value) {
 	if (iswindwillrotate == 90) {
 		iswindwillrotate = 0;
 	}
-	
+
 
 	//skyball 
 	backgroundrotate += 0.2;
 	if (backgroundrotate == 360) {
 		backgroundrotate = 0;
 	}
-	
+
 	if (skytransparency >= 0.9999) {
 		skyup = false;
 	}
@@ -917,9 +919,9 @@ void update(int value) {
 		skyup = true;
 	}
 	if (skyup) {
-		skytransparency += 1.0f/ 600.0f;
+		skytransparency += 1.0f / 600.0f;
 	}
-	else if(!skyup){
+	else if (!skyup) {
 		skytransparency -= 1.0f / 600.0f;
 	}
 
@@ -942,10 +944,10 @@ void KeyboardDisplay(unsigned char key, int x, int y)
 	if (key == 's' || key == 'S') {
 		eye_updown -= 2; //Camera up
 	}
-	if (key == 'w' || key == 'W'){
+	if (key == 'w' || key == 'W') {
 		eye_updown += 2; //Camera up
 	}
-			
+
 	if (key == 'a' || key == 'A') {
 		eye_rotation -= 2;
 	}
@@ -981,8 +983,8 @@ void KeyboardDisplay(unsigned char key, int x, int y)
 		}
 	}
 	centerX = cos(eye_rotation / 180 * PI) * cos(eye_updown / 180 * PI) + eyeX;
-	centerY =  sin(eye_updown / 180 * PI) + eyeY;
-	centerZ =  sin(eye_rotation / 180 * PI) * cos(eye_updown / 180 * PI) + eyeZ;
+	centerY = sin(eye_updown / 180 * PI) + eyeY;
+	centerZ = sin(eye_rotation / 180 * PI) * cos(eye_updown / 180 * PI) + eyeZ;
 
 	glutPostRedisplay();
 
@@ -1010,7 +1012,7 @@ void specialKeyboardKeys(int key, int xx, int yy) {
 		eyeX -= move_speed * cos(eye_rotation / 180 * PI);
 		eyeZ -= move_speed * sin(eye_rotation / 180 * PI);
 		centerX -= move_speed * cos(eye_rotation / 180 * PI);
-		centerZ -= move_speed * sin(eye_rotation / 180 * PI); 
+		centerZ -= move_speed * sin(eye_rotation / 180 * PI);
 		break;
 	case GLUT_KEY_UP: // Move forward
 		eyeX += move_speed * cos(eye_rotation / 180 * PI);
@@ -1024,14 +1026,14 @@ void specialKeyboardKeys(int key, int xx, int yy) {
 }
 
 void Mouseclick(GLint button, GLint state, GLint x, GLint y) {
-		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-			updatespeed += 2;
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+		updatespeed += 2;
+	}
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
+		if (updatespeed > 2) {
+			updatespeed -= 2;
 		}
-		if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
-			if (updatespeed > 2) {
-				updatespeed -= 2;
-			}
-		}
+	}
 	glutPostRedisplay();
 }
 
@@ -1048,7 +1050,7 @@ void displayObject()
 	gluPerspective(fltFOV, 1, 0.1, 10000);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(eyeX , eyeY , eyeZ , centerX, centerY, centerZ, fltXUp, fltYUp, fltZUp);
+	gluLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, fltXUp, fltYUp, fltZUp);
 	glClearColor(153 / 255.0, 204 / 255.0, 255 / 255.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
